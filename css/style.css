@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  background-color: blue;
+  color:white;
+}
+
+.scoreBoard {
+  display:flex;
+  flex-direction: row;
+  border: 2px solid;
+}
+
+article p{
+  width: 150px;
+  padding:10px;
+  text-indent: 10px;
+}
+
+.scoreSheet {
+  background-color: white;
+  color:blue;
+  text-align: center;
+  width:20%;
+}
