@@ -2,6 +2,9 @@ let game = {
     validMoves: ["R","P","S"],
     moveNames: ["Rock","Paper","Scissors"],
     gameResult: ["Draw","User wins!","Computer wins!"],
+    userWins:0,
+    computerWins:0,
+    isGameFinished: false,
     winner: function(s1,s2){
         console.log(s1,s2);
         if (s1===s2){
@@ -17,44 +20,45 @@ let game = {
     }
 };
 
-let isGameFinished = false; 
-let userWins = 0;
-let computerWins = 0;
 
 function endGame() {
     if (confirm("Are you ready to give up?")) {
         let finalWinner = "Draw ";
-        if (userWins>computerWins){
+        if (game.userWins>game.computerWins){
             finalWinner = "User wins ";
-        } else  if (userWins<computerWins){
+        } else  if (game.userWins<game.computerWins){
             finalWinner = "Computer wins ";
         }
-        isGameFinished = true;
-        document.getElementById("finalScore").innerHTML = finalWinner+userWins+" to "+computerWins;
+        game.isGameFinished = true;
+        document.getElementById("finalScore").innerHTML = finalWinner+game.userWins+" to "+game.computerWins;
       } 
 }
 
 function playGame() {
     let text;
 
-    if(isGameFinished) {
+    if(game.isGameFinished) {
         document.getElementById("finalScore").innerHTML = " ";
-        userWins = 0;
-        computerWins = 0;
-        isGameFinished = false
+        game.userWins = 0;
+        game.computerWins = 0;
+        game.isGameFinished = false
     }
 
     let puserChoice = prompt("(R)ock, (P)aper, or (S)cissors:");
     let userChoice = puserChoice.toUpperCase();
+    let idxUser;
     if (userChoice == null || userChoice == "" || !(game.validMoves.includes(userChoice))) {
       text = "Invalid entry.";
       return;
     } else {
-      text = "You entered " + userChoice ;
+      idxUser = game.validMoves.indexOf(userChoice);
+      text = "You entered " + game.moveNames[idxUser] ;
     }
+
     let computerChoice = game.validMoves[Math.floor(Math.random() * 3)];
-    text = text + ". Computer picks "+computerChoice;
-    alert("Computer picks "+computerChoice);
+    let idxComp = game.validMoves.indexOf(computerChoice);
+    text = text + ". Computer picks "+game.moveNames[idxComp];
+    alert("Computer picks "+game.moveNames[idxComp]);
     document.getElementById("result").innerHTML = text;
 
     let result = game.winner(userChoice,computerChoice);
@@ -64,10 +68,9 @@ function playGame() {
     if (result===1){
         userWins++;
     } else if (result===2){
-        computerWins++;
+        game.computerWins++;
     }
-    document.getElementById("scoreUser").innerHTML = userWins;
-    document.getElementById("scoreComputer").innerHTML = computerWins;
+    document.getElementById("scoreUser").innerHTML = game.userWins;
+    document.getElementById("scoreComputer").innerHTML = game.computerWins;
 
-    
   }
