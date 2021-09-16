@@ -4,21 +4,84 @@
   color:white;
 }
 
-.scoreBoard {
-  display:flex;
-  flex-direction: row;
-  border: 2px solid;
+:root {
+  --lightBlue: rgba(255, 255, 255, 0.8);
 }
 
-article p{
-  width: 150px;
-  padding:10px;
-  text-indent: 10px;
+header h1 {
+  margin-left: auto;
+  margin-right: auto ;
+  text-align: center;
 }
 
 .scoreSheet {
   background-color: white;
   color:blue;
   text-align: center;
-  width:20%;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto ;
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: var(--lightBlue);
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.scoreBoard {
+  grid-column: 1 / span 4;
+  grid-row: 1;
+}
+
+.scoreBoard p {
+  background-color: var(--lightBlue);
+  color: blue;
+}
+
+.console {
+  grid-column: 1 ;
+  grid-row: 2 / span 3;
+}
+
+.home {
+  grid-column: 2;
+  grid-row: 2 / span 2;
+}
+
+.visitor {
+  grid-column: 3;
+  grid-row: 2 / span 2;
+}
+
+.draws {
+  grid-column: 4;
+  grid-row: 2 / span 2;
+}
+
+.finalScore {
+  grid-column: 2 / span 3;
+  grid-row: 4;
+}
+
+.grid-item button{
+  display:block;
+  margin: 20px;
+  padding: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto ;
+  font-size: 30px;
+}
+
+#finalScore p {
+  color:blue;
 }

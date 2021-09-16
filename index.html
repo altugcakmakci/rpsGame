@@ -14,22 +14,36 @@
 
     <!-- Body -->
     <main>
-      <p>Push the button for a new game!</p>
-      <button onclick="playGame()">Take your pick</button>
 
-      <p id="result">Play the first game!</p>
-      <h2>Scoreboard</h2>
-      <article class="scoreBoard">
-        <p>User : </p>
+    <div class="grid-container">
+      <div class="grid-item scoreBoard">
+        <h2>Scoreboard</h2>
+      </div>
+      <div class="grid-item console">
+        <button onclick="newGame()">New game</button>
+        <button onclick="playGame()">Take your pick</button>
+        <button onclick="endGame()">End the game</button>
+      </div>
+      <div class="grid-item home">
+        <p>User</p>
         <p id="scoreUser" class="scoreSheet">0</p>
-        <p> Computer : </p>
+      </div>
+      <div class="grid-item visitor">
+        <p>Computer</p>
         <p id="scoreComputer" class="scoreSheet">0</p>
-      </article>
-
-      <button onclick="endGame()">End the game</button>
-      <p id = "finalScore"></p>
+      </div>
+      <div class="grid-item draws">
+        <p>Draws</p>
+        <p id="scoreDraw" class="scoreSheet">0</p>
+      </div>  
+      <div class="grid-item finalScore">
+        <p id = "finalScore"></p>
+      </div>
+    </div>
     </main>
 
     <script src="script.js"></script>
+
+
   </body>
 </html>

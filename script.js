@@ -4,6 +4,7 @@ let game = {
     gameResult: ["Draw","User wins!","Computer wins!"],
     userWins:0,
     computerWins:0,
+    draws:0,
     isGameFinished: false,
     winner: function(s1,s2){
         console.log(s1,s2);
@@ -20,6 +21,16 @@ let game = {
     }
 };
 
+function newGame() {
+    document.getElementById("finalScore").innerHTML = " ";
+    game.userWins = 0;
+    game.computerWins = 0;
+    game.draws = 0;
+    game.isGameFinished = false;
+    document.getElementById("scoreUser").innerHTML = game.userWins;
+    document.getElementById("scoreComputer").innerHTML = game.computerWins;
+    document.getElementById("scoreDraw").innerHTML = game.draws;
+}
 
 function endGame() {
     if (confirm("Are you ready to give up?")) {
@@ -41,6 +52,7 @@ function playGame() {
         document.getElementById("finalScore").innerHTML = " ";
         game.userWins = 0;
         game.computerWins = 0;
+        game.draws = 0;
         game.isGameFinished = false
     }
 
@@ -48,7 +60,7 @@ function playGame() {
     let userChoice = puserChoice.toUpperCase();
     let idxUser;
     if (userChoice == null || userChoice == "" || !(game.validMoves.includes(userChoice))) {
-      text = "Invalid entry.";
+        alert("Invalid entry.");
       return;
     } else {
       idxUser = game.validMoves.indexOf(userChoice);
@@ -57,20 +69,23 @@ function playGame() {
 
     let computerChoice = game.validMoves[Math.floor(Math.random() * 3)];
     let idxComp = game.validMoves.indexOf(computerChoice);
-    text = text + ". Computer picks "+game.moveNames[idxComp];
+    text = text + ".\nComputer picks "+game.moveNames[idxComp];
     alert("Computer picks "+game.moveNames[idxComp]);
-    document.getElementById("result").innerHTML = text;
+    document.getElementById("finalScore").innerHTML = text;
 
     let result = game.winner(userChoice,computerChoice);
     let alertText = game.gameResult[result];
     alert(alertText);
 
     if (result===1){
-        userWins++;
+        game.userWins++;
     } else if (result===2){
         game.computerWins++;
+    } else {
+        game.draws++;
     }
     document.getElementById("scoreUser").innerHTML = game.userWins;
     document.getElementById("scoreComputer").innerHTML = game.computerWins;
+    document.getElementById("scoreDraw").innerHTML = game.draws;
 
   }
